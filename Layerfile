@@ -1,0 +1,17 @@
+# Use Ubuntu 18.04 base
+FROM vm/ubuntu:18.04
+
+# Actualiza los paquetes e instala PHP
+RUN apt-get update && apt-get install -y php php-cli
+
+# Copia los archivos de tu repositorio al directorio de trabajo
+COPY . /var/www/html/
+
+# Cambia al directorio de tu proyecto
+WORKDIR /var/www/html/
+
+# Inicia el servidor PHP embebido en el puerto 8000
+RUN BACKGROUND php -S 0.0.0.0:8000
+
+# Exponer el servidor web en el puerto 8000
+EXPOSE WEBSITE http://localhost:8000
